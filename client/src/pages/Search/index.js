@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
-import { Link } from 'react-router-dom';
 
 class Search extends Component {
 
@@ -28,7 +27,7 @@ class Search extends Component {
     API.search(this.state.title)
       .then(res =>
         this.setState({
-          books: res.data,
+          books: res.data.items,
           title:''
         })
       )
@@ -39,9 +38,9 @@ class Search extends Component {
     API.saveBook({
       title: book.volumeInfo.title,
       authors: book.volumeInfo.authors,
-      description: book.description,
-      image: book.imageLinks.smallThumbnail,
-      link: book.selfLink
+      description: book.volumeInfo.description,
+      image: book.volumeInfo.imageLinks.smallThumbnail,
+      link: book.volumeInfo.infoLink
     })
       .then (res=>
         this.setState({
@@ -58,24 +57,20 @@ class Search extends Component {
           <h2>Book Search</h2>
           <form>
             <div className="form-group">
-              <label for="searchInput">
-              Search by Title
-              </label>
+              <p> Search by Title </p>
               <input
                 type="text"
                 className="form-control"
                 id="searchInput"
                 aria-describedby="search"
-                placeholder="i.e. A Tale of Two Cities"
                 name="title"
                 value={this.state.title}
                 onChange={this.handleInputChange}
               />
             </div>
             <button
-              type="submit"
               className="btn btn-primary"
-              onClick={() => this.searchBook}
+              onClick={this.searchBook}
             >
             Submit
             </button>
@@ -86,7 +81,7 @@ class Search extends Component {
           {this.state.books.length ? (
             <ul className="list-group">
               {this.state.books.map(book => (
-                <li className="list-group-item">
+                <li className="list-group-item" key={book.id}>
                 <div>
                   <h3>
                     {book.volumeInfo.title}
@@ -97,22 +92,20 @@ class Search extends Component {
                   <img
                   className="book-image"
                   alt="thumbnail of book"
-                  src= {book.imageLinks.smallThumbnail}
+                  src= {book.volumeInfo.imageLinks.smallThumbnail}
                   />
-                  <p classname="description">
-                    {book.description}
+                  <p className="description">
+                    {book.volumeInfo.description}
                   </p>
-                  <Link to={book.selfLink}>
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                    >
-                      view
-                    </button>
-                  </Link>
                   <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btn-dark"
+                  >
+                    <a href= {book.volumeInfo.infoLink} > view</a>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-dark"
                     onClick={() => this.saveBook(book)}
                   >
                     save

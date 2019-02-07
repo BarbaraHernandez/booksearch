@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
+import './search.css';
 
 class Search extends Component {
 
@@ -79,37 +80,47 @@ class Search extends Component {
         <div id="search-results" className="list-overflow-container">
           <h2>Results</h2>
           {this.state.books.length ? (
-            <ul className="list-group">
+            <ul className="list-group center">
               {this.state.books.map(book => (
-                <li className="list-group-item" key={book.id}>
-                <div>
-                  <h3>
-                    {book.volumeInfo.title}
-                  </h3>
-                  <p>
-                    Written by: {book.volumeInfo.authors || "unknown"}
-                  </p>
-                  <img
-                  className="book-image"
-                  alt="thumbnail of book"
-                  src= {book.volumeInfo.imageLinks.smallThumbnail}
-                  />
-                  <p className="description">
-                    {book.volumeInfo.description}
-                  </p>
-                  <button
-                    type="button"
-                    className="btn btn-dark"
-                  >
-                    <a href= {book.volumeInfo.infoLink} > view</a>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-dark"
-                    onClick={() => this.saveBook(book)}
-                  >
-                    save
-                  </button>
+                <li className="list-group-item book-box" key={book.id}>
+                <div className="container">
+                  <div className="row">
+                    <h3>
+                      {book.volumeInfo.title}
+                    </h3>
+                  </div>
+                  <div className="row">
+                    <p>
+                      Written by: {book.volumeInfo.authors || "unknown"}
+                    </p>
+                  </div>
+                  <div className="row justify-content-md-center">
+                    <div className="col-md-3">
+                      <img
+                        className="book-image"
+                        alt="thumbnail of book"
+                        src= {book.volumeInfo.imageLinks.smallThumbnail}
+                      />
+                    </div>
+                    <div className="col-md-9">
+                      <p className="description">
+                        {book.volumeInfo.description}
+                      </p>
+                    </div>
+                  </div>
+                    <button
+                      type="button"
+                      className="btn btn-dark custom-button"
+                    >
+                      <a href= {book.volumeInfo.infoLink} > view</a>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-dark custom-button"
+                      onClick={() => this.saveBook(book)}
+                    >
+                      save
+                    </button>
                 </div>
                 </li>
               ))}

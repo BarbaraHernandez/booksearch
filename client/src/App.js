@@ -6,21 +6,25 @@ import Search from './pages/Search';
 import Saved from './pages/Saved';
 import NoMatch from './NoMatch';
 import Jumbotron from './components/Jumbotron';
+import Wrapper from './components/Wrapper';
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Jumbotron />
-          <Switch>
-            <Route exact path="/" component={Search} />
-            <Route exact path="/saved" component={Saved} />
-            <Route component={NoMatch} />
-          </Switch>
-        </div>
-      </Router>
+      <div>
+        <Navbar />
+        <Jumbotron />
+        <Wrapper>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Search} />
+              <Route exact path="/saved" component={Saved} />
+              <Route component={NoMatch} />
+            </Switch>
+          </Router>
+        </Wrapper>
+      </div>
+
     );
   }
 }

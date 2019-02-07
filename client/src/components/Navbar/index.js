@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './navbar.css';
 
 class Navbar extends Component {
   render() {
@@ -7,7 +8,8 @@ class Navbar extends Component {
         <a className="navbar-brand" href="/">
           Book Search
         </a>
-        <a href="/books">Saved</a>
+        <a className="custom-link" href="/books">Search</a>
+        <a className="custom-link" href="/books">Saved</a>
       </nav>
     );
   }

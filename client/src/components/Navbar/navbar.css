@@ -1,3 +1,4 @@
-.custom-link{
+.custom-link,
+.custom-link:hover{
   margin-left:20px;
 }

@@ -8,8 +8,8 @@ class Navbar extends Component {
         <a className="navbar-brand" href="/">
           Book Search
         </a>
-        <a className="custom-link" href="/books">Search</a>
-        <a className="custom-link" href="/books">Saved</a>
+        <a className="custom-link" href="/">Search</a>
+        <a className="custom-link" href="/saved">Saved</a>
       </nav>
     );
   }

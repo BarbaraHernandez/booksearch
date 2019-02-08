@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
-import { Link } from 'react-router-dom';
 
 class Saved extends Component {
 
@@ -20,14 +19,15 @@ class Saved extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({
-          books: res.data,
-          title: '',
-          authors: [],
-          description: '',
-          image: '',
-          link: ''
-        })
+        console.log("data:" + res.data)
+        // this.setState({
+        //   books: res.data,
+        //   title: '',
+        //   authors: [],
+        //   description: '',
+        //   image: '',
+        //   link: ''
+        // })
       )
       .catch(err =>
         console.log(err)
@@ -55,30 +55,38 @@ class Saved extends Component {
           {this.state.books.length ? (
             <ul className="list-group">
               {this.state.books.map(book => (
-                <li className="list-group-item">
-                <div>
-                  <h3>
-                    {book.volumeInfo.title}
-                  </h3>
-                  <p>
-                    Written by: {book.volumeInfo.authors || "unknown"}
-                  </p>
-                  <img
-                  className="book-image"
-                  alt="thumbnail of book"
-                  src= {book.imageLinks.smallThumbnail}
-                  />
-                  <p classname="description">
-                    {book.description}
-                  </p>
-                  <Link to={book.selfLink}>
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                    >
-                      view
-                    </button>
-                  </Link>
+                <li className="list-group-item" key={book._id}>
+                  <div className="container">
+                  <div className="row">
+                    <h3>
+                      {book.title}
+                    </h3>
+                  </div>
+                  <div className="row">
+                    <p>
+                      Written by: {book.authors || "unknown"}
+                    </p>
+                  </div>
+                  <div className="row justify-content-md-center">
+                    <div className="col-md-3">
+                      <img
+                        className="book-image"
+                        alt="thumbnail of book"
+                        src= {book.image}
+                      />
+                    </div>
+                    <div className="col-md-9">
+                      <p className="description">
+                        {book.description}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-dark custom-button"
+                  >
+                    <a href= {book.link} > view</a>
+                  </button>
                   <button
                     type="button"
                     className="btn btn-secondary"

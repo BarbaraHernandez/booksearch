@@ -4,4 +4,4 @@ const bookRoutes = require("./books");
 
 router.use("/books", bookRoutes);
 
-module.exports = router
+module.exports = router;

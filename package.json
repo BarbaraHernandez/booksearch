@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/BarbaraHernandez/booksearch/issues"
   },
-  "homepage": "https://github.com/BarbaraHernandez/booksearch/README",
+  "homepage": "https://github.com/BarbaraHernandez/booksearch#readme",
   "devDependencies": {
     "babel-eslint": "9.0.0",
     "concurrently": "^4.1.0",

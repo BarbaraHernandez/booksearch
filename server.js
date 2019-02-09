@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "build")));
+  app.use(express.static(path.join(__dirname, "/public")));
 }
 
 //Connect to Mongo DB
@@ -24,7 +24,7 @@ app.use(routes);
 
 // Send every non-API request to the React app
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "/build", "/index.html"));
 });
 
 app.listen(PORT, () => {

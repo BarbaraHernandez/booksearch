@@ -4,12 +4,7 @@ import API from '../../utils/API';
 class Saved extends Component {
 
   state = {
-    books: [],
-    title: '',
-    authors: [],
-    description: '',
-    image: '',
-    link: ''
+    books: []
   };
 
   componentDidMount() {
@@ -19,26 +14,14 @@ class Saved extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        console.log("data:" + res.data)
-        // this.setState({
-        //   books: res.data,
-        //   title: '',
-        //   authors: [],
-        //   description: '',
-        //   image: '',
-        //   link: ''
-        // })
+        // console.log("data:" + res.data)
+        this.setState({
+          books: res.data,
+        })
       )
       .catch(err =>
         console.log(err)
       );
-  };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   };
 
   deleteBook = id => {

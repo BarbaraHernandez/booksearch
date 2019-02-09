@@ -9,7 +9,6 @@ export function Wrapper({children}) {
           {children}
         </div>
       </div>
-
     </div>
   );
 }
